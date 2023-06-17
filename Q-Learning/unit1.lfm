@@ -1,0 +1,406 @@
+object Form1: TForm1
+  Left = 519
+  Height = 491
+  Top = 296
+  Width = 1060
+  Caption = 'Maze_solver'
+  ClientHeight = 491
+  ClientWidth = 1060
+  Color = clAppWorkspace
+  Font.CharSet = ANSI_CHARSET
+  Font.Color = clBlack
+  Font.Height = -29
+  Font.Name = 'Calibri'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  OnCreate = FormCreate
+  LCLVersion = '2.0.12.0'
+  object Shape1: TShape
+    Left = 16
+    Height = 64
+    Top = 16
+    Width = 64
+  end
+  object Shape2: TShape
+    Left = 16
+    Height = 64
+    Top = 80
+    Width = 64
+  end
+  object Shape3: TShape
+    Left = 16
+    Height = 64
+    Top = 144
+    Width = 64
+  end
+  object Shape4: TShape
+    Left = 80
+    Height = 64
+    Top = 144
+    Width = 64
+  end
+  object Shape5: TShape
+    Left = 80
+    Height = 64
+    Top = 16
+    Width = 64
+  end
+  object Shape6: TShape
+    Left = 144
+    Height = 64
+    Top = 16
+    Width = 64
+  end
+  object Shape7: TShape
+    Left = 144
+    Height = 64
+    Top = 80
+    Width = 64
+  end
+  object Shape8: TShape
+    Left = 144
+    Height = 64
+    Top = 144
+    Width = 64
+  end
+  object Shape9: TShape
+    Left = 208
+    Height = 64
+    Top = 144
+    Width = 64
+  end
+  object Shape10: TShape
+    Left = 80
+    Height = 64
+    Top = 80
+    Width = 64
+    Brush.Color = clWindowFrame
+  end
+  object Shape11: TShape
+    Left = 208
+    Height = 64
+    Top = 16
+    Width = 64
+    Brush.Color = clLime
+  end
+  object Shape12: TShape
+    Left = 208
+    Height = 64
+    Top = 80
+    Width = 64
+    Brush.Color = clRed
+  end
+  object Image_robbi: TImage
+    Left = 16
+    Height = 64
+    Top = 144
+    Width = 64
+    Picture.Data = {
+      055449636F6EFE0400000000010001001313000001001800E804000016000000
+      2800000013000000260000000100180000000000000000004B0000004B000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0055E2FF00000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000055E2FF
+      000000000000000000000000000000000000000000FF4D00FF4D00FF4D00FF4D
+      00FF4D0000000000000000000000000000000000000000000055E2FF00000000
+      0000000000000000000000FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00
+      FF4D00FF4D0000000000000000000000000000000055E2FF0000000000000000
+      00000000FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF
+      4D00FF4D0000000000000000000000000055E2FF000000000000000000FF4D00
+      FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D
+      00FF4D0000000000000000000055E2FF000000000000000000FF4D00FF4D00FF
+      4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00
+      00000000000000000055E2FFFF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D
+      00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF
+      4D00FF4D0055E2FFFF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00
+      FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D
+      0055E2FFFF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF
+      4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D0055E2FF
+      FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D
+      00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D0055E2FFFF4D00FF
+      4D00FF4D00FF4D00FF4D0050F8FF50F8FF50F8FFFF4D00FF4D00FF4D0050F8FF
+      50F8FF50F8FFFF4D00FF4D00FF4D00FF4D00FF4D0055E2FFFF4D00FF4D00FF4D
+      00FF4D0050F8FF50F8FF50F8FF50F8FF50F8FFFF4D0050F8FF50F8FF50F8FF50
+      F8FF50F8FFFF4D00FF4D00FF4D00FF4D0055E2FFFF4D00FF4D00FF4D00FF4D00
+      FF4D0050F8FF50F8FF50F8FFFF4D00FF4D00FF4D0050F8FF50F8FF50F8FFFF4D
+      00FF4D00FF4D00FF4D00FF4D0055E2FFFF4D00FF4D00FF4D00000000FF4D00FF
+      4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00000000
+      FF4D00FF4D00FF4D0055E2FFFF4D00FF4D00FF4D00000000000000FF4D00FF4D
+      00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00FF4D00000000000000FF4D00FF
+      4D00FF4D0055E2FFFF4D00FF4D00FF4D00000000000000000000000000FF4D00
+      FF4D00FF4D00FF4D00FF4D00000000000000000000000000FF4D00FF4D00FF4D
+      0055E2FFFF4D00FF4D00FF4D0000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000FF4D00FF4D00FF4D0055E2FF
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000055E2FFFFFFE000
+      FFFFE000FE0FE000F803E000F001E000E000E000E000E0000000000000000000
+      000000000000000000000000000000000000000010010000180300001E0F0000
+      1FFF0000FFFFE000
+    }
+    Stretch = True
+  end
+  object Button_start: TButton
+    Left = 280
+    Height = 43
+    Top = 16
+    Width = 210
+    Caption = 'Button_start'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    OnClick = Button_startClick
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 0
+    Height = 36
+    Top = 26
+    Width = 15
+    Caption = '0'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 40
+    Height = 36
+    Top = -16
+    Width = 15
+    Caption = '0'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 0
+    Height = 36
+    Top = 96
+    Width = 15
+    Caption = '1'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 104
+    Height = 36
+    Top = -16
+    Width = 15
+    Caption = '1'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 0
+    Height = 36
+    Top = 160
+    Width = 15
+    Caption = '2'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label6: TLabel
+    Left = 168
+    Height = 36
+    Top = -16
+    Width = 15
+    Caption = '2'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label7: TLabel
+    Left = 232
+    Height = 36
+    Top = -16
+    Width = 15
+    Caption = '3'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label_Robbi_x: TLabel
+    Left = 384
+    Height = 36
+    Top = 72
+    Width = 170
+    Caption = 'Label_Robbi_x'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label_runs: TLabel
+    Left = 416
+    Height = 36
+    Top = 184
+    Width = 127
+    Caption = 'Label_runs'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label_successes: TLabel
+    Left = 616
+    Height = 36
+    Top = 16
+    Width = 187
+    Caption = 'Label_successes'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label_failiures: TLabel
+    Left = 824
+    Height = 36
+    Top = 16
+    Width = 169
+    Caption = 'Label_failiures'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label_Robbi_y: TLabel
+    Left = 384
+    Height = 36
+    Top = 128
+    Width = 170
+    Caption = 'Label_Robbi_y'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label8: TLabel
+    Left = 280
+    Height = 36
+    Top = 72
+    Width = 101
+    Caption = 'Robbi x='
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label9: TLabel
+    Left = 280
+    Height = 36
+    Top = 128
+    Width = 101
+    Caption = 'Robbi y='
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label10: TLabel
+    Left = 280
+    Height = 36
+    Top = 184
+    Width = 121
+    Caption = 'steps left='
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Button_move: TButton
+    Left = 150
+    Height = 32
+    Top = 311
+    Width = 108
+    Caption = 'move'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -29
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    OnClick = Button_moveClick
+    ParentFont = False
+    TabOrder = 1
+  end
+  object Timer_Move: TTimer
+    Interval = 1
+    OnTimer = Timer_MoveTimer
+    Left = 96
+    Top = 96
+  end
+end

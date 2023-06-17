@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="C:\Progs64\lazarus\fpc\3.2.0\bin\x86_64-win64\fpc.exe" Date="1381338938"/>
+  <Params Value=" -MObjFPC -Scghi -CirotR -O1 -WG -l -vewnhibq -FiH:\Lazarus_Projekte\m03-QLearning\v4-lastproblemos\lib\x86_64-win64 -FuC:\Progs64\lazarus\lcl\units\x86_64-win64\win32 -FuC:\Progs64\lazarus\lcl\units\x86_64-win64 -FuC:\Progs64\lazarus\components\lazutils\lib\x86_64-win64 -FuC:\Progs64\lazarus\packager\units\x86_64-win64 -FuH:\Lazarus_Projekte\m03-QLearning\v4-lastproblemos\ -FUH:\Lazarus_Projekte\m03-QLearning\v4-lastproblemos\lib\x86_64-win64\ -FEH:\Lazarus_Projekte\m03-QLearning\v4-lastproblemos\ -oH:\Lazarus_Projekte\m03-QLearning\v4-lastproblemos\maze_solver.exe -dLCL -dLCLwin32 maze_solver.lpr"/>
+</CONFIG>
