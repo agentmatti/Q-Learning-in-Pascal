@@ -204,8 +204,7 @@ begin
   act.down:= StateActionValues[pos.x,pos.y,3];
   act.left:= StateActionValues[pos.x,pos.y,4];
   //get the biggest action value and return it
-  Result:=0;
-  if act.up>Result then Result:=act.up;
+  Result:=act.up;
   if act.right>Result then Result:=act.right;
   if act.down>Result then Result:=act.down;
   if act.left>Result then Result:=act.left;
@@ -220,8 +219,7 @@ begin
   act.down:= StateActionValues[pos.x,pos.y,3];
   act.left:= StateActionValues[pos.x,pos.y,4];
   //get the biggest action value and return it
-  Result:=0;
-  if act.up<Result then Result:=act.up;
+  Result:=act.up;
   if act.right<Result then Result:=act.right;
   if act.down<Result then Result:=act.down;
   if act.left<Result then Result:=act.left;
@@ -238,22 +236,23 @@ begin
   //initialize array
   for a:=1 to length(resActions) do resActions[a]:=0;
 
-  // s ist die anzahl der besten actions
+  // s is the nuber of best actions
   s:=0;
 
   //check which action has the most value
   for curAction := 1 to 4 do
-  begin
+   begin
     if best = StateActionValues[pos.x,pos.y,curAction] then
-    begin
+     begin
       s:=s+1;
       // save action
       resActions[s]:=curAction;
     end;
   end;
    // Select a random action from the best actions
-  selectedAction:= resActions[Random(s)+1];
+   selectedAction:= resActions[Random(s)+1];
 
+   if resActions[1]= 0 then writeln('no best action found --------------------------------------------------------');
   //return the most valuable action as a number
   Result := selectedAction;
   //WriteLn(inttostr(Result));
@@ -408,8 +407,8 @@ begin
      end; // for action
    end; // for y
  end; // for x
-  StateActionValues[Goal.x,Goal.y,1]:= max_reward;
-  StateActionValues[loss.x,loss.y,1]:= -max_reward;
+  //StateActionValues[Goal.x,Goal.y,1]:= max_reward;
+  //StateActionValues[loss.x,loss.y,1]:= -max_reward;
 end;
 
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
