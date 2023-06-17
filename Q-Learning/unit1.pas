@@ -232,9 +232,11 @@ Var best:real;
     curAction, a, s, selectedAction: Byte;
 Var resActions: array[1..4] of Byte;
 begin
-  // setlength(resActions,0);
   //get the biggest action value
   best:=getMaxActionValueForState(pos);
+
+  //initialize array
+  for a:=1 to length(resActions) do resActions[a]:=0;
 
   // s ist die anzahl der besten actions
   s:=0;
@@ -247,22 +249,13 @@ begin
       s:=s+1;
       // save action
       resActions[s]:=curAction;
-      if s = 1 then a := curAction;
     end;
   end;
    // Select a random action from the best actions
-  //selectedAction:= resActions[1];//Random(s)+1];
-
-  if a=205 then begin
-    writeLN('verkackz');
-    start_over;
-  END;
-
-
-
+  selectedAction:= resActions[Random(s)+1];
 
   //return the most valuable action as a number
-  Result := a;    //selectedAction;
+  Result := selectedAction;
   //WriteLn(inttostr(Result));
 
 end;

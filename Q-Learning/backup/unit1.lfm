@@ -1,101 +1,100 @@
 object Form1: TForm1
-  Left = 573
-  Height = 614
-  Top = 352
-  Width = 1325
+  Left = 752
+  Height = 491
+  Top = 557
+  Width = 1060
   Caption = 'Maze_solver'
-  ClientHeight = 614
-  ClientWidth = 1325
+  ClientHeight = 491
+  ClientWidth = 1060
   Color = clAppWorkspace
-  DesignTimePPI = 120
   Font.CharSet = ANSI_CHARSET
   Font.Color = clBlack
-  Font.Height = -36
+  Font.Height = -29
   Font.Name = 'Calibri'
   Font.Pitch = fpVariable
   Font.Quality = fqDraft
   OnCreate = FormCreate
   LCLVersion = '2.0.12.0'
   object Shape1: TShape
-    Left = 20
-    Height = 80
-    Top = 20
-    Width = 80
+    Left = 16
+    Height = 64
+    Top = 16
+    Width = 64
   end
   object Shape2: TShape
-    Left = 20
-    Height = 80
-    Top = 100
-    Width = 80
+    Left = 16
+    Height = 64
+    Top = 80
+    Width = 64
   end
   object Shape3: TShape
-    Left = 20
-    Height = 80
-    Top = 180
-    Width = 80
+    Left = 16
+    Height = 64
+    Top = 144
+    Width = 64
   end
   object Shape4: TShape
-    Left = 100
-    Height = 80
-    Top = 180
-    Width = 80
+    Left = 80
+    Height = 64
+    Top = 144
+    Width = 64
   end
   object Shape5: TShape
-    Left = 100
-    Height = 80
-    Top = 20
-    Width = 80
+    Left = 80
+    Height = 64
+    Top = 16
+    Width = 64
   end
   object Shape6: TShape
-    Left = 180
-    Height = 80
-    Top = 20
-    Width = 80
+    Left = 144
+    Height = 64
+    Top = 16
+    Width = 64
   end
   object Shape7: TShape
-    Left = 180
-    Height = 80
-    Top = 100
-    Width = 80
+    Left = 144
+    Height = 64
+    Top = 80
+    Width = 64
   end
   object Shape8: TShape
-    Left = 180
-    Height = 80
-    Top = 180
-    Width = 80
+    Left = 144
+    Height = 64
+    Top = 144
+    Width = 64
   end
   object Shape9: TShape
-    Left = 260
-    Height = 80
-    Top = 180
-    Width = 80
+    Left = 208
+    Height = 64
+    Top = 144
+    Width = 64
   end
   object Shape10: TShape
-    Left = 100
-    Height = 80
-    Top = 100
-    Width = 80
+    Left = 80
+    Height = 64
+    Top = 80
+    Width = 64
     Brush.Color = clWindowFrame
   end
   object Shape11: TShape
-    Left = 260
-    Height = 80
-    Top = 20
-    Width = 80
+    Left = 208
+    Height = 64
+    Top = 16
+    Width = 64
     Brush.Color = clLime
   end
   object Shape12: TShape
-    Left = 260
-    Height = 80
-    Top = 100
-    Width = 80
+    Left = 208
+    Height = 64
+    Top = 80
+    Width = 64
     Brush.Color = clRed
   end
   object Image_robbi: TImage
-    Left = 20
-    Height = 80
-    Top = 180
-    Width = 80
+    Left = 16
+    Height = 64
+    Top = 144
+    Width = 64
     Picture.Data = {
       055449636F6EFE0400000000010001001313000001001800E804000016000000
       2800000013000000260000000100180000000000000000004B0000004B000000
@@ -142,14 +141,14 @@ object Form1: TForm1
     Stretch = True
   end
   object Button_start: TButton
-    Left = 350
-    Height = 54
-    Top = 20
-    Width = 262
+    Left = 280
+    Height = 43
+    Top = 16
+    Width = 210
     Caption = 'Button_start'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -159,125 +158,118 @@ object Form1: TForm1
   end
   object Label1: TLabel
     Left = 0
-    Height = 44
-    Top = 32
-    Width = 18
+    Height = 36
+    Top = 26
+    Width = 15
     Caption = '0'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     ParentColor = False
     ParentFont = False
-    OnClick = Label1Click
   end
   object Label2: TLabel
-    Left = 50
-    Height = 44
-    Top = -20
-    Width = 18
+    Left = 40
+    Height = 36
+    Top = -16
+    Width = 15
     Caption = '0'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     ParentColor = False
     ParentFont = False
-    OnClick = Label1Click
   end
   object Label3: TLabel
     Left = 0
-    Height = 44
-    Top = 120
-    Width = 18
+    Height = 36
+    Top = 96
+    Width = 15
     Caption = '1'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     ParentColor = False
     ParentFont = False
-    OnClick = Label1Click
   end
   object Label4: TLabel
-    Left = 130
-    Height = 44
-    Top = -20
-    Width = 18
+    Left = 104
+    Height = 36
+    Top = -16
+    Width = 15
     Caption = '1'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     ParentColor = False
     ParentFont = False
-    OnClick = Label1Click
   end
   object Label5: TLabel
     Left = 0
-    Height = 44
-    Top = 200
-    Width = 18
+    Height = 36
+    Top = 160
+    Width = 15
     Caption = '2'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     ParentColor = False
     ParentFont = False
-    OnClick = Label1Click
   end
   object Label6: TLabel
-    Left = 210
-    Height = 44
-    Top = -20
-    Width = 18
+    Left = 168
+    Height = 36
+    Top = -16
+    Width = 15
     Caption = '2'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     ParentColor = False
     ParentFont = False
-    OnClick = Label1Click
   end
   object Label7: TLabel
-    Left = 290
-    Height = 44
-    Top = -20
-    Width = 18
+    Left = 232
+    Height = 36
+    Top = -16
+    Width = 15
     Caption = '3'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     ParentColor = False
     ParentFont = False
-    OnClick = Label1Click
   end
   object Label_Robbi_x: TLabel
-    Left = 480
-    Height = 44
-    Top = 90
-    Width = 213
+    Left = 384
+    Height = 36
+    Top = 72
+    Width = 170
     Caption = 'Label_Robbi_x'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -285,14 +277,14 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label_runs: TLabel
-    Left = 520
-    Height = 44
-    Top = 230
-    Width = 160
+    Left = 416
+    Height = 36
+    Top = 184
+    Width = 127
     Caption = 'Label_runs'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -300,14 +292,14 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label_successes: TLabel
-    Left = 770
-    Height = 44
-    Top = 20
-    Width = 236
+    Left = 616
+    Height = 36
+    Top = 16
+    Width = 187
     Caption = 'Label_successes'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -315,14 +307,14 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label_failiures: TLabel
-    Left = 1030
-    Height = 44
-    Top = 20
-    Width = 210
+    Left = 824
+    Height = 36
+    Top = 16
+    Width = 169
     Caption = 'Label_failiures'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -330,14 +322,14 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label_Robbi_y: TLabel
-    Left = 480
-    Height = 44
-    Top = 160
-    Width = 213
+    Left = 384
+    Height = 36
+    Top = 128
+    Width = 170
     Caption = 'Label_Robbi_y'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -345,14 +337,14 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label8: TLabel
-    Left = 350
-    Height = 44
-    Top = 90
-    Width = 126
+    Left = 280
+    Height = 36
+    Top = 72
+    Width = 101
     Caption = 'Robbi x='
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -360,14 +352,14 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label9: TLabel
-    Left = 350
-    Height = 44
-    Top = 160
-    Width = 126
+    Left = 280
+    Height = 36
+    Top = 128
+    Width = 101
     Caption = 'Robbi y='
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -375,14 +367,14 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label10: TLabel
-    Left = 350
-    Height = 44
-    Top = 230
-    Width = 151
+    Left = 280
+    Height = 36
+    Top = 184
+    Width = 121
     Caption = 'steps left='
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -390,14 +382,14 @@ object Form1: TForm1
     ParentFont = False
   end
   object Button_move: TButton
-    Left = 188
-    Height = 40
-    Top = 389
-    Width = 135
+    Left = 150
+    Height = 32
+    Top = 311
+    Width = 108
     Caption = 'move'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -36
+    Font.Height = -29
     Font.Name = 'Calibri'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -408,7 +400,7 @@ object Form1: TForm1
   object Timer_Move: TTimer
     Interval = 1
     OnTimer = Timer_MoveTimer
-    Left = 120
-    Top = 120
+    Left = 96
+    Top = 96
   end
 end

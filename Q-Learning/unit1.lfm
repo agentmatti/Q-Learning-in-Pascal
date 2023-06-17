@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 519
+  Left = 752
   Height = 491
-  Top = 296
+  Top = 557
   Width = 1060
   Caption = 'Maze_solver'
   ClientHeight = 491

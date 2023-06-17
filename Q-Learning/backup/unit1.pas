@@ -47,7 +47,6 @@ TYPE
     procedure Button_moveClick(Sender: TObject);
     procedure Button_startClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure Label1Click(Sender: TObject);
     procedure Timer_MoveTimer(Sender: TObject);
   private
 
@@ -126,15 +125,13 @@ Begin
   Robbi.x:=Robbi.x-1;
 end;
 
-Function Reward(pos:State_t):Integer;
+
+Function onFinishingSquare(pos:State_t):Boolean;
 Begin
-  //big reward for winning State_t
-  If (pos.y=0) and (pos.x=3) then Result:=100
-  //big negative reward for losing State_t
-  else If (pos.y=1) and (pos.x=3) then Result:=-100
-  //small negative reward for normal State_t
-  else Result:=-1;
+  if ((pos.x = goal.x) and (pos.y = goal.y)) or((pos.x = loss.x) and (pos.y = loss.y)) then result:=true
+    else Result:=false;
 end;
+
 
 Function invalid_state(s: State_t):BOOLEAN;
 Begin
@@ -149,6 +146,53 @@ Begin
      then Result := True
   else Result := False
 end;
+
+Procedure Random_Robbi_pos;
+Var pos:State_t;
+Var successfull:Boolean;
+Begin
+  // "successfull" is there to indicete wether a valid position was found
+  successfull:=false;
+  While not(successfull=true) Do
+        Begin
+        // decide a random position
+        pos.x:=Random(4);
+        pos.y:=Random(3);
+        // check if the position is valid, repeat if not
+        If (Invalid_State(pos) or onFinishingSquare(pos)) then successfull:= false
+        else Begin
+             //get robbi to the decided position, end the process
+             Robbi:=pos;
+             successfull:=true;
+             end;
+     //   WriteLn(inttostr(successfull));
+  end;
+end;
+
+Procedure start_over;
+Begin
+  //sicergehen,dass der timer läuft
+  Form1.Timer_Move.Enabled:=TRUE;
+  //"neu würfeln"
+  randomize;
+  //robbi auf eine zufällige position setzen
+  Random_Robbi_pos;
+  Runs:=runs-1;
+  Writeln('new beginning new pos: '+inttostr(robbi.x)+', '+inttostr(Robbi.y))
+end;
+
+Function Reward(pos:State_t):Integer;
+Begin
+  //big reward for winning State_t
+  If (pos.y=0) and (pos.x=3) then Result:=100
+  //big negative reward for losing State_t
+  else
+    If (pos.y=1) and (pos.x=3) then Result:=-100
+  //small negative reward for normal State_t
+  else
+    Result:=-1;
+end;
+
 
 
 Function getMaxActionValueForState(pos:State_t): real;
@@ -185,12 +229,15 @@ end;
 
 Function getBestActionForState(pos:State_t): Byte;
 Var best:real;
-    curAction, s, selectedAction: Byte;
+    curAction, a, s, selectedAction: Byte;
 Var resActions: array[1..4] of Byte;
 begin
-  // setlength(resActions,0);
   //get the biggest action value
   best:=getMaxActionValueForState(pos);
+
+  //initialize array
+  for a:=1 to length(resActions) do resActions[a]:=0;
+
 
   // s ist die anzahl der besten actions
   s:=0;
@@ -207,6 +254,8 @@ begin
   end;
    // Select a random action from the best actions
   selectedAction:= resActions[Random(s)+1];
+
+
 
   //return the most valuable action as a number
   Result := selectedAction;
@@ -271,46 +320,6 @@ Begin
     end
   //ansonsten weitermachen
   else result:=false;
-end;
-
-Function onFinishingSquare(pos:State_t):Boolean;
-Begin
-  if ((pos.x = goal.x) and (pos.y = goal.y)) or((pos.x = loss.x) and (pos.y = loss.y)) then result:=true
-    else Result:=false;
-end;
-
-Procedure Random_Robbi_pos;
-Var pos:State_t;
-Var successfull:Boolean;
-Begin
-  // "successfull" is there to indicete wether a valid position was found
-  successfull:=false;
-  While not(successfull=true) Do
-        Begin
-        // decide a random position
-        pos.x:=Random(4);
-        pos.y:=Random(3);
-        // check if the position is valid, repeat if not
-        If (Invalid_State(pos) or onFinishingSquare(pos)) then successfull:= false
-        else Begin
-             //get robbi to the decided position, end the process
-             Robbi:=pos;
-             successfull:=true;
-             end;
-     //   WriteLn(inttostr(successfull));
-  end;
-end;
-
-Procedure start_over;
-Begin
-  //sicergehen,dass der timer läuft
-  Form1.Timer_Move.Enabled:=TRUE;
-  //"neu würfeln"
-  randomize;
-  //robbi auf eine zufällige position setzen
-  Random_Robbi_pos;
-  Runs:=runs-1;
-  Writeln('new beginning new pos: '+inttostr(robbi.x)+', '+inttostr(Robbi.y))
 end;
 
 
@@ -432,11 +441,6 @@ begin
 
   start_over;
   update_robbi;
-end;
-
-procedure TForm1.Label1Click(Sender: TObject);
-begin
-
 end;
 
 procedure TForm1.Button_startClick(Sender: TObject);
