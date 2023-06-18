@@ -67,36 +67,36 @@ IMPLEMENTATION
 //-------------------------------------------------------------------
 
 Const
-    size_x = 4;//max x coordinate of the field
-    size_y = 3;//max y coordinate of the field
-    min_x = 0;//min x coordinate of the field
-    min_y = 0;//min y coordinate of the field
-    max_reward = 100;//the reward the agent gets when winning
-    living_penalty = -1;//the penalty the agent gets every move
-    anzActions = 4;//the number of actions the agent can take
-    Epsilon = 10;//the probability in percent for the agent to take a random action
+    GCsize_x = 4;//max x coordinate of the field
+    GCsize_y = 3;//max y coordinate of the field
+    GCmin_x = 0;//min x coordinate of the field
+    GCmin_y = 0;//min y coordinate of the field
+    GCmax_reward = 100;//the reward the agent gets when winning
+    GCliving_penalty = -1;//the penalty the agent gets every move
+    GCanzActions = 4;//the number of actions the agent can take
+    GCepsilon = 10;//the probability in percent for the agent to take a random action
     //learning_rate
-    Discount = 0.9;//the factor theStateActionValue gets decreased by
+    GCdiscount = 0.9;//the factor theStateActionValue gets decreased by
 
 TYPE tState = Record
      x: integer;
      y: integer;
 end;
 
-TYPE tStateActionValues = Array[min_x..size_x-1,
-                                min_y..size_y-1,
-                                1..anzActions]
+TYPE tStateActionValues = Array[GCmin_x..GCsize_x-1,
+                                GCmin_y..GCsize_y-1,
+                                1..GCanzActions]
                                 of real;
 
 Var Robbi: tState;
     Runs,Start_runs:Integer;
     Failures,successes:WORD;
-//    Discount: REAL;
+
 
 // one wall
-Var wand: tState;
-Var goal: tState;
-Var loss: tState;
+Var GVwand: tState;
+Var GVgoal: tState;
+Var GVloss: tState;
 
 // holds value per state and action related to reaching the target
 // address: state.x, state.y, action
@@ -155,8 +155,8 @@ end;
 
 Function onFinishingSquare(pos:tState):Boolean;
 Begin
-  if ((pos.x = goal.x) and (pos.y = goal.y)) or
-     ((pos.x = loss.x) and (pos.y = loss.y)) then result:=true
+  if ((pos.x = GVgoal.x) and (pos.y = GVgoal.y)) or
+     ((pos.x = GVloss.x) and (pos.y = GVloss.y)) then result:=true
     else Result:=false;
 end;
 
@@ -164,12 +164,12 @@ end;
 Function invalid_state(pos: tState):BOOLEAN;
 Begin
   // wenn robbi außerhalb des feldes
-  if (pos.x < min_x) or
-     (pos.x > (min_x + size_x - 1)) or
-     (pos.y < min_y) or
-     (pos.y > (min_y + size_y - 1)) or
+  if (pos.x < GCmin_x) or
+     (pos.x > (GCmin_x + GCsize_x - 1)) or
+     (pos.y < GCmin_y) or
+     (pos.y > (GCmin_y + GCsize_y - 1)) or
      //oder in der wand ist
-     ((pos.x = wand.x) and (pos.y = wand.y))
+     ((pos.x = GVwand.x) and (pos.y = GVwand.y))
      //return true
      then Result := True
   else Result := False
@@ -184,10 +184,11 @@ Begin
   While not successfull Do
         Begin
         // decide a random position
-        pos.x:=Random(size_x);
-        pos.y:=Random(size_y);
+        pos.x:=Random(GCsize_x);
+        pos.y:=Random(GCsize_y);
         // check if the position is valid, repeat if not
-        If (Invalid_State(pos) or onFinishingSquare(pos)) then successfull:= false
+        If (Invalid_State(pos) or
+            onFinishingSquare(pos)) then successfull:= false
         else Begin
              //get robbi to the decided position, end the process
              Robbi:=pos;
@@ -207,16 +208,16 @@ Begin
   Writeln('new beginning new pos: '+inttostr(robbi.x)+', '+inttostr(Robbi.y))
 end;
 
-Function Reward(pos:tState):Integer;
+Function Reward(pos:tState; livingPenalty:ShortInt):Integer;
 Begin
   //big reward for winning State
-  If (pos.y=goal.y) and (pos.x=goal.x) then Result:= max_reward
+  If (pos.y=GVgoal.y) and (pos.x=GVgoal.x) then Result:= GCmax_reward
   else
     //big negative reward for losing State
-    If (pos.y=loss.y) and (pos.x=loss.x) then Result:=-max_reward
+    If (pos.y=GVloss.y) and (pos.x=GVloss.x) then Result:=-GCmax_reward
   else
     //small negative reward for normal State
-    Result:=living_penalty;
+    Result:=livingPenalty;
 end;
 
 
@@ -268,21 +269,21 @@ begin
 
 end;
 
-Function KomplizierteGleichung(new_Pos:tState):Real;
+Function KomplizierteGleichung(new_Pos:tState; livingPenalty:ShortInt):Real;
 Var Ergebnis:REAL;
 Begin
   Ergebnis:= getMaxActionValueForState(new_pos);
-  Ergebnis:= Ergebnis + Reward(new_pos);
-  Ergebnis:= Ergebnis * discount;
+  Ergebnis:= Ergebnis + Reward(new_pos,livingPenalty);
+  Ergebnis:= Ergebnis * GCdiscount;
   Result:= Runden(Ergebnis,3);
 end;
 
-procedure setValue4StateAction(old_pos:tState; Action_taken:Integer;new_pos:tState);
+procedure setValue4StateAction(old_pos:tState; Action_taken:Integer;new_pos:tState; livingPenalty: ShortInt);
 Var newStateActionValue: Real;
 begin
   //Calculate the new stateactionValue for the action just taken
-  newStateActionValue := KomplizierteGleichung(new_Pos);
-  //newStateActionValue:= oldStateActionValue+learning_rate*((Reward(new_pos)+Discount*(getMaxActionValueForState(new_pos)))-oldStateActionValue);
+  newStateActionValue := KomplizierteGleichung(new_Pos, livingPenalty);
+  //newStateActionValue:= oldStateActionValue+learning_rate*((Reward(new_pos)+GCdiscount*(getMaxActionValueForState(new_pos)))-oldStateActionValue);
 
   IdkWhatToCallThis[old_pos.x,old_pos.y,Action_taken]:=newStateActionValue;
 end;
@@ -317,9 +318,9 @@ Begin
   old_robbi.y:=Robbi.y;
 
   //    Explore/Exploit
-  If Random(100)+1 < Epsilon then Begin
+  If Random(100) < GCepsilon then Begin
       //random move
-      decision:=random(anzActions)+1;
+      decision:=random(GCanzActions)+1;
       Writeln('random');
       end
     else
@@ -338,9 +339,9 @@ Begin
     end;
  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  //Update the value for the action just taken
- setValue4StateAction(Old_robbi,decision,robbi);
+ setValue4StateAction(Old_robbi,decision,robbi, GCliving_penalty);
 
- Writeln('old Pos: ' + inttostr(Old_robbi.x) + ', ' + inttostr(Old_robbi.y) + '; Action: '+inttostr(decision)+'; new Pos: '+inttostr(robbi.x)+', '+inttostr(Robbi.y)+'; Reward: '+inttostr( Reward(Robbi) )  );
+ Writeln('old Pos: ' + inttostr(Old_robbi.x) + ', ' + inttostr(Old_robbi.y) + '; Action: '+inttostr(decision)+'; new Pos: '+inttostr(robbi.x)+', '+inttostr(Robbi.y)+'; Reward: '+inttostr( Reward(Robbi,GCliving_penalty) )  );
  Writeln('best state-action-Value: '+floattostr(getMaxActionValueForState(robbi))+'; worst state-action-Value: ' + floattostr(getMinActionValueForState(robbi)) +  '; random next best next action: ' + inttostr(getBestActionForState(robbi)));
  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  //check if game ended und dann neustarten
@@ -361,17 +362,17 @@ procedure initBattleField ();
 var x,y,a: integer;
 begin
  // init walls
- wand.x := 1;
- wand.y := 1;
+ GVwand.x := 1;
+ GVwand.y := 1;
  //init Goal/loss
- Goal.x:= 3;
- Goal.y:= 0;
- loss.x:= 3;
- loss.y:= 1;
+ GVgoal.x:= 3;
+ GVgoal.y:= 0;
+ GVloss.x:= 3;
+ GVloss.y:= 1;
  // init values
- for x := min_x to min_x + (size_x-1) do
+ for x := GCmin_x to GCmin_x + (GCsize_x-1) do
  begin
-   for y := min_y to min_y + (size_y-1) do
+   for y := GCmin_y to GCmin_y + (GCsize_y-1) do
    begin
      for a := 1 to 4 do
        IdkWhatToCallThis[x,y,a] := 0.0;
@@ -395,7 +396,6 @@ begin
   Successes:=0;
   Failures:=0;
   initBattleField();
-  ///Discount:=0.9;
 
 
   start_over;
